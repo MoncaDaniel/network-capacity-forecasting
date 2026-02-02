@@ -125,12 +125,9 @@ These reports are **ready to be shared with technical and executive teams**.
 ## How to Run
 
 ### Environment Setup
-```bash
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
-
----
 
 ## Run Forecasting & Risk Pipeline
 python -m src.ncf.run_mvp
