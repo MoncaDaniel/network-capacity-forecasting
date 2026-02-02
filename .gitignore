@@ -12,3 +12,8 @@ reports/
 *.joblib
 
 .env
+
+# Allow lightweight portfolio artifacts in reports
+!reports/
+!reports/*.html
+!reports/*.csv
