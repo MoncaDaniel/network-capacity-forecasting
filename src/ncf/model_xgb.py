@@ -15,6 +15,10 @@ def make_supervised(df_cell: pd.DataFrame, lags=(1,2,24,48,168)) -> pd.DataFrame
     return df
 
 def train_xgb_forecast(df: pd.DataFrame, cell_id: str, train_end: str):
+    """
+    Entraîne un XGBRegressor sur une cellule.
+    Renvoie: model, feats, mae, valid_df (timestamp + y_true + y_pred)
+    """
     d = df[df["cell_id"] == cell_id].copy()
     d = make_supervised(d)
 
@@ -40,4 +44,8 @@ def train_xgb_forecast(df: pd.DataFrame, cell_id: str, train_end: str):
     pred = model.predict(Xva)
     mae = mean_absolute_error(yva, pred)
 
-    return model, feats, mae
+    valid_out = valid[["timestamp"]].copy()
+    valid_out["y_true"] = yva.values
+    valid_out["y_pred"] = pred
+
+    return model, feats, mae, valid_out
