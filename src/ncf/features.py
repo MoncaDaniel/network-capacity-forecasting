@@ -9,7 +9,8 @@ def add_time_features(df: pd.DataFrame) -> pd.DataFrame:
     df["is_weekend"] = (df["dayofweek"] >= 5).astype(int)
     return df
 
-def add_saturation_label(df: pd.DataFrame, threshold_mbps: float) -> pd.DataFrame:
+def add_saturation_label(df: pd.DataFrame, thresholds_by_zone: dict) -> pd.DataFrame:
     df = df.copy()
-    df["is_saturated"] = (df["traffic_mbps"] >= threshold_mbps).astype(int)
+    df["saturation_threshold_mbps"] = df["zone_type"].map(thresholds_by_zone).astype(float)
+    df["is_saturated"] = (df["traffic_mbps"] >= df["saturation_threshold_mbps"]).astype(int)
     return df
