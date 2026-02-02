@@ -172,7 +172,7 @@ Cost-based CAPEX optimization framework
 
 ## Author
 
-Daniel Moncada Leon
+## Daniel MONCADA LEON
 Data Scientist — Applied Machine Learning & Network Analytics
 
 ---
